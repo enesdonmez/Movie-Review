@@ -12,13 +12,11 @@
       <PrivateAssets>all</PrivateAssets>
       <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
     </PackageReference>
+    <PackageReference Include="Scalar.AspNetCore" Version="2.0.15" />
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="Controllers\" />
-  </ItemGroup>
-
-  <ItemGroup>
+    <ProjectReference Include="..\..\Core\MovieReview.Application\MovieReview.Application.csproj" />
     <ProjectReference Include="..\..\Infrastructure\MovieReview.Persistence\MovieReview.Persistence.csproj" />
   </ItemGroup>
 

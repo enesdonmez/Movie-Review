@@ -1,4 +1,6 @@
 
+using Scalar.AspNetCore;
+
 namespace MovieReview.WebApi
 {
     public class Program
@@ -16,6 +18,13 @@ namespace MovieReview.WebApi
             if (app.Environment.IsDevelopment())
             {
                 app.MapOpenApi();
+               app.MapScalarApiReference(sc =>
+               {
+                   sc.Theme = ScalarTheme.Kepler;
+                   sc.WithTitle("Movie Review API");
+                   
+
+               });
             }
 
             app.UseHttpsRedirection();
