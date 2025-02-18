@@ -28,7 +28,7 @@ namespace MovieReview.WebApi
             }
 
             app.UseHttpsRedirection();
-
+           
             app.UseAuthorization();
 
 
