@@ -1,11 +1,6 @@
 ﻿using MovieReview.Application.Features.CQRS.Commands.MovieCommands;
 using MovieReview.Domain.Entities;
 using MovieReview.Persistence.Context;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace MovieReview.Application.Features.CQRS.Handlers.MovieHandlers
 {
@@ -18,7 +13,7 @@ namespace MovieReview.Application.Features.CQRS.Handlers.MovieHandlers
             _movieContext = movieContext;
         }
 
-        public async void Handle(CreateMovieCommand command)
+        public async Task Handle(CreateMovieCommand command)
         {
             _movieContext.Movies.Add(new Movie
             {

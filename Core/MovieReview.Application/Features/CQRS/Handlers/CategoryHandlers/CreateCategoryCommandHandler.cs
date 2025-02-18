@@ -1,11 +1,6 @@
 ﻿using MovieReview.Application.Features.CQRS.Commands.CategoryCommands;
 using MovieReview.Domain.Entities;
 using MovieReview.Persistence.Context;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace MovieReview.Application.Features.CQRS.Handlers.CategoryHandlers
 {
@@ -18,7 +13,7 @@ namespace MovieReview.Application.Features.CQRS.Handlers.CategoryHandlers
             _movieContext = movieContext;
         }
 
-        public async void Handle(CreateCategoryCommand command)
+        public async Task Handle(CreateCategoryCommand command)
         {
             _movieContext.Categories.Add( new Category
             {

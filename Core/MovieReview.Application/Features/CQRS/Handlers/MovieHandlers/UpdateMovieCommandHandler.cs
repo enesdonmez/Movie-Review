@@ -1,10 +1,5 @@
 ﻿using MovieReview.Application.Features.CQRS.Commands.MovieCommands;
 using MovieReview.Persistence.Context;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace MovieReview.Application.Features.CQRS.Handlers.MovieHandlers
 {
@@ -17,7 +12,7 @@ namespace MovieReview.Application.Features.CQRS.Handlers.MovieHandlers
             _movieContext = movieContext;
         }
 
-        public async  void Handle(UpdateMovieCommand command)
+        public async Task Handle(UpdateMovieCommand command)
         {
             var value = await _movieContext.Movies.FindAsync(command.MovieId);
 

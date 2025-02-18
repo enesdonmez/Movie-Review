@@ -1,10 +1,5 @@
 ﻿using MovieReview.Application.Features.CQRS.Commands.CategoryCommands;
 using MovieReview.Persistence.Context;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace MovieReview.Application.Features.CQRS.Handlers.CategoryHandlers
 {
@@ -17,11 +12,11 @@ namespace MovieReview.Application.Features.CQRS.Handlers.CategoryHandlers
             _movieContext = movieContext;
         }
 
-        public async void Handle(RemoveCategoryCommand command)
+        public async Task Handle(RemoveCategoryCommand command)
         {
             var value = await _movieContext.Categories.FindAsync(command.Id);
 
-            _movieContext.Remove(value);
+            _movieContext.Categories.Remove(value);
             await _movieContext.SaveChangesAsync();
         }
     }
