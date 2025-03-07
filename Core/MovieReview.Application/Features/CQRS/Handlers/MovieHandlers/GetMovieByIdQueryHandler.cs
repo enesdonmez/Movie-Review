@@ -19,6 +19,7 @@ namespace MovieReview.Application.Features.CQRS.Handlers.MovieHandlers
 
             return new GetMovieByIdQueryResult
             {
+                MovieId = value.MovieId,
                 Title = value.Title,
                 Description = value.Description,
                 CoverImageUrl = value.CoverImageUrl,
