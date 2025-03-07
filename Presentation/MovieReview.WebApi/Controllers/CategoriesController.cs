@@ -39,16 +39,16 @@ namespace MovieReview.WebApi.Controllers
         }
 
         [HttpGet]
-        public async Task<IActionResult> GetCategoryById(GetCategoryByIdQuery query)
+        public async Task<IActionResult> GetCategoryById(int id)
         {
-            var value = await _getCategoryByIdQueryHandler.Handle(query);
+            var value = await _getCategoryByIdQueryHandler.Handle(new GetCategoryByIdQuery(id));
             return Ok(value);
         }
 
         [HttpDelete]
-        public async Task<IActionResult> DeleteCategory(RemoveCategoryCommand command)
+        public async Task<IActionResult> DeleteCategory(int id)
         {
-            await _removeCategoryCommandHandler.Handle(command);
+            await _removeCategoryCommandHandler.Handle(new RemoveCategoryCommand(id));
             return Ok("Kategori silindi.");
         }
 
