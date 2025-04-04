@@ -8,6 +8,7 @@ namespace MovieReview.Application.Features.CQRS.Handlers.MovieHandlers
     {
         private readonly MovieContext _movieContext;
 
+
         public CreateMovieCommandHandler(MovieContext movieContext)
         {
             _movieContext = movieContext;
