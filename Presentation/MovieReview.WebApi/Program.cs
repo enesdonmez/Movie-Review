@@ -1,5 +1,6 @@
 using MovieReview.Application.Features.CQRS.Handlers.CategoryHandlers;
 using MovieReview.Application.Features.CQRS.Handlers.MovieHandlers;
+using MovieReview.Application.Features.Mediator.Handlers.TagHandlers;
 using MovieReview.Persistence.Context;
 using Scalar.AspNetCore;
 using System.Reflection;
@@ -26,10 +27,9 @@ public class Program
         builder.Services.AddScoped<RemoveMovieCommandHandler>();
         builder.Services.AddScoped<GetMovieByIdQueryHandler>();
 
-        builder.Services.AddMediatR(cfg =>
-        {
-            cfg.RegisterServicesFromAssembly(Assembly.GetExecutingAssembly());
-        });
+        builder.Services.AddMediatR(cfg => cfg.RegisterServicesFromAssembly(typeof(GetTagQueryHandler).Assembly));
+        builder.Services.AddMediatR(cfg => cfg.RegisterServicesFromAssembly(typeof(GetCategoryQueryHandler).Assembly));
+
 
         builder.Services.AddControllers();
         builder.Services.AddOpenApi();
