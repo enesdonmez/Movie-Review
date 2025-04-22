@@ -1,0 +1,128 @@
+﻿@model List<ResultMovieDto>
+@{
+	ViewData["Title"] = "MovieList";
+	Layout = "~/Views/MainLayout/Layout.cshtml";
+}
+
+<div class="page-single movie_list">
+	<div class="container">
+		<div class="row ipad-width2">
+			<div class="col-md-8 col-sm-12 col-xs-12">
+				<div class="topbar-filter">
+					<p>Toplam <span>184</span> Film Mevcut.</p>
+					<label>Sıralama:</label>
+					<select>
+						<option value="popularity">Popüler Sıralama A--Z</option>
+						<option value="popularity">Popüler Sıralama Z--A</option>
+						<option value="rating">Reytinge Göre A--Z</option>
+						<option value="rating">Reytinge Göre Z--A</option>
+						<option value="date">Eklenme Sırasına Göre A--Z</option>
+						<option value="date">Eklenme Sırasına Göre Z--A</option>
+					</select>
+					<a href="movielist.html" class="list"><i class="ion-ios-list-outline active"></i></a>
+					<a href="moviegrid.html" class="grid"><i class="ion-grid"></i></a>
+				</div>
+
+				@foreach(var item in Model)
+				{
+					<div class="movie-item-style-2">
+						<img src="@item.CoverImageUrl" alt="">
+						<div class="mv-item-infor">
+							<h6><a href="moviesingle.html">@item.Title <span>(@item.CreatedYear)</span></a></h6>
+							<p class="rate"><i class="ion-android-star"></i><span>@item.Rating</span> /10</p>
+							<p class="describe">@item.Description</p>
+							<p class="run-time"> Süre: @item.Duration Dk’    .     <span>MMPA: PG-13 </span>    .     <span>Çıkış Tarihi: @item.ReleaseDate</span></p>
+							<p>Yönetmen: <a href="#">Joss Whedon</a></p>
+							<p>Oyuncular: <a href="#">Robert Downey Jr.,</a> <a href="#">Chris Evans,</a> <a href="#">  Chris Hemsworth</a></p>
+						</div>
+					</div>
+
+				}
+			
+				<div class="topbar-filter">
+					<label>Her Sayfadaki Film Sayısı:</label>
+					<select>
+						<option value="range">5 Film</option>
+						<option value="saab">10 Film</option>
+					</select>
+					<div class="pagination2">
+						<span>Sayfa 1 - 2:</span>
+						<a class="active" href="#">1</a>
+						<a href="#">2</a>
+						<a href="#"><i class="ion-arrow-right-b"></i></a>
+					</div>
+				</div>
+			</div>
+			<div class="col-md-4 col-sm-12 col-xs-12">
+				<div class="sidebar">
+					<div class="searh-form">
+						<h4 class="sb-title">Film Arama</h4>
+						<form class="form-style-1" action="#">
+							<div class="row">
+								<div class="col-md-12 form-it">
+									<label>Film Adı</label>
+									<input type="text" placeholder="aranacak kelimeler...">
+								</div>
+								<div class="col-md-12 form-it">
+									<label>Tür & Kategori</label>
+									<div class="group-ip">
+										<select name="skills" multiple="" class="ui fluid dropdown">
+											<option value="">Film Türü Seçiniz</option>
+											<option value="Action1">Aksiyon</option>
+											<option value="Action2">Macera</option>
+											<option value="Action3">Animasyon</option>
+											<option value="Action4">Korku</option>
+											<option value="Action5">Komedi</option>
+										</select>
+									</div>
+
+								</div>
+								<div class="col-md-12 form-it">
+									<label>Reyting Puanı</label>
+
+									<select>
+										<option value="range">-- Reyting Puanı Seçin --</option>
+										<option value="saab">-- 8 ve Üzeri --</option>
+										<option value="saab">-- 7 ve 8 Arası --</option>
+										<option value="saab">-- 5 ve 7 Arası --</option>
+										<option value="saab">-- 5'den Düşük --</option>
+									</select>
+
+								</div>
+								<div class="col-md-12 form-it">
+									<label>Film Çıkış Tarihi</label>
+									<div class="row">
+										<div class="col-md-6">
+											<select>
+												<option value="range">Yıl Seçiniz</option>
+												<option value="number">2000</option>
+												<option value="number">2010</option>
+												<option value="number">2020</option>
+											</select>
+										</div>
+										<div class="col-md-6">
+											<select>
+												<option value="range">Yıl Seçiniz</option>
+												<option value="number">2000</option>
+												<option value="number">2010</option>
+												<option value="number">2020</option>
+											</select>
+										</div>
+									</div>
+								</div>
+								<div class="col-md-12 ">
+									<input class="submit" type="submit" value="Film Ara">
+								</div>
+							</div>
+						</form>
+					</div>
+					<div class="ads">
+						<img src="/Film-Review/images/uploads/ads1.png" alt="">
+					</div>
+					
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+
