@@ -4,15 +4,8 @@ using Newtonsoft.Json;
 
 namespace MovieReview.Web.Controllers
 {
-    public class MovieController : Controller
+    public class MovieController(IHttpClientFactory _httpClientFactory) : Controller
     {
-        private readonly IHttpClientFactory _httpClientFactory;
-
-        public MovieController(IHttpClientFactory httpClientFactory)
-        {
-            _httpClientFactory = httpClientFactory;
-        }
-
         public async Task<IActionResult> MovieList()
         {
             ViewBag.v1 = "Film Listesi";
@@ -29,6 +22,11 @@ namespace MovieReview.Web.Controllers
             }
 
 
+            return View();
+        }
+
+        public async Task<IActionResult> MovieDetail(int id)
+        {
             return View();
         }
     }
