@@ -1,7 +1,10 @@
+using Microsoft.AspNetCore.Identity;
 using MovieReview.Application.Features.CQRS.Handlers.CategoryHandlers;
 using MovieReview.Application.Features.CQRS.Handlers.MovieHandlers;
+using MovieReview.Application.Features.CQRS.Handlers.UserRegisterHandlers;
 using MovieReview.Application.Features.Mediator.Handlers.TagHandlers;
 using MovieReview.Persistence.Context;
+using MovieReview.Persistence.Identity;
 using Scalar.AspNetCore;
 using System.Reflection;
 
@@ -26,6 +29,12 @@ public class Program
         builder.Services.AddScoped<UpdateMovieCommandHandler>();
         builder.Services.AddScoped<RemoveMovieCommandHandler>();
         builder.Services.AddScoped<GetMovieByIdQueryHandler>();
+
+        builder.Services.AddScoped<CreateUserRegisterCommandHandler>();
+        builder.Services.AddIdentity<AppUser, IdentityRole>()
+            .AddEntityFrameworkStores<MovieContext>()
+            .AddDefaultTokenProviders();
+
 
         builder.Services.AddMediatR(cfg => cfg.RegisterServicesFromAssembly(typeof(GetTagQueryHandler).Assembly));
         builder.Services.AddMediatR(cfg => cfg.RegisterServicesFromAssembly(typeof(GetCategoryQueryHandler).Assembly));
