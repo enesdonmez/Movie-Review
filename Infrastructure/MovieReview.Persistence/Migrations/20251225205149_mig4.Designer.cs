@@ -3,6 +3,7 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using MovieReview.Persistence.Context;
 
@@ -11,9 +12,11 @@ using MovieReview.Persistence.Context;
 namespace MovieReview.Persistence.Migrations
 {
     [DbContext(typeof(MovieContext))]
-    partial class MovieContextModelSnapshot : ModelSnapshot
+    [Migration("20251225205149_mig4")]
+    partial class mig4
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -216,7 +219,7 @@ namespace MovieReview.Persistence.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("MovieId"));
 
-                    b.Property<int>("CategoryId")
+                    b.Property<int?>("CategoryId")
                         .HasColumnType("int");
 
                     b.Property<string>("CoverImageUrl")
@@ -273,54 +276,6 @@ namespace MovieReview.Persistence.Migrations
                     b.HasKey("ReviewId");
 
                     b.ToTable("Reviews");
-                });
-
-            modelBuilder.Entity("MovieReview.Domain.Entities.Series", b =>
-                {
-                    b.Property<int>("SeriesId")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("SeriesId"));
-
-                    b.Property<int?>("AverageEpisodeDuration")
-                        .HasColumnType("int");
-
-                    b.Property<int>("CategoryId")
-                        .HasColumnType("int");
-
-                    b.Property<string>("CoverImageUrl")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<int>("CreatedYear")
-                        .HasColumnType("int");
-
-                    b.Property<string>("Description")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<int>("EpisodeCount")
-                        .HasColumnType("int");
-
-                    b.Property<DateTime>("FirstAirDate")
-                        .HasColumnType("datetime2");
-
-                    b.Property<decimal>("Rating")
-                        .HasColumnType("decimal(18,2)");
-
-                    b.Property<int>("SeasonCount")
-                        .HasColumnType("int");
-
-                    b.Property<string>("Status")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("Title")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.HasKey("SeriesId");
-
-                    b.HasIndex("CategoryId");
-
-                    b.ToTable("Serieses");
                 });
 
             modelBuilder.Entity("MovieReview.Domain.Entities.Tag", b =>
@@ -470,20 +425,7 @@ namespace MovieReview.Persistence.Migrations
                 {
                     b.HasOne("MovieReview.Domain.Entities.Category", "Category")
                         .WithMany("Movies")
-                        .HasForeignKey("CategoryId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("Category");
-                });
-
-            modelBuilder.Entity("MovieReview.Domain.Entities.Series", b =>
-                {
-                    b.HasOne("MovieReview.Domain.Entities.Category", "Category")
-                        .WithMany("Serieses")
-                        .HasForeignKey("CategoryId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                        .HasForeignKey("CategoryId");
 
                     b.Navigation("Category");
                 });
@@ -491,8 +433,6 @@ namespace MovieReview.Persistence.Migrations
             modelBuilder.Entity("MovieReview.Domain.Entities.Category", b =>
                 {
                     b.Navigation("Movies");
-
-                    b.Navigation("Serieses");
                 });
 #pragma warning restore 612, 618
         }

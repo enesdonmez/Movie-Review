@@ -1,6 +1,6 @@
-﻿namespace MovieReview.Domain.Entities;
+﻿namespace MovieReview.Dto.Dtos.AdminMovieDtos;
 
-public class Movie
+public class AdminResultMovieDto
 {
     public int MovieId { get; set; }
     public string Title { get; set; }
@@ -11,6 +11,4 @@ public class Movie
     public DateTime ReleaseDate { get; set; }
     public string CreatedYear { get; set; }
     public bool Status { get; set; }
-    public int CategoryId { get; set; }
-    public Category Category { get; set; }
 }
